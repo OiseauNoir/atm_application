@@ -7,92 +7,62 @@ $('#depositChecking').on('click', function(){
   var input = parseInt($('#inputChecking').val());
   var currentBalance = parseInt($('#checkingBalance').text());
   var newBalance = (currentBalance + input);
-  $('#checkingBalance').text(newBalance)
+  $('#checkingBalance').text(newBalance);
   $('#inputChecking').val('');
-    if(newBalance > 0) {
-      $('.checking').css('background-color', 'green');
-    }
 });
 
-//Checking account withdrawl
-//On click of the withdrawChecking button
-//Get value from the amountChecking input field
-// If that value is greater than the value in the account ignore that action
-// In other words if this would put the account into a negative balance do not allow it
-//Else subtract that value from the current amount in the checking account
+//Checking Withdrawl
 $('#withdrawChecking').on('click', function(){
   var input = parseInt($('#inputChecking').val());
   var currentBalance = parseInt($('#checkingBalance').text());
   var newBalance = (currentBalance - input);
-  $('#checkingBalance').text(newBalance)
+  $('#checkingBalance').text(newBalance);
   $('#inputChecking').val('');
-    if(newBalance > 0) {
-      $('.checking').css('background-color', 'green');
-    }
+  if(newBalance < 0) {
+    $('#checkingBalance').text(currentBalance);
+    alert('Warning: Insufficient Funds')
+  }
+  if (newBalance === 0) {
+    $('.checking').addClass('zero');
+  }
+  if (newBalance > 0) {
+    $('.checking').removeClass('zero').addClass('balance');
+  }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //Savings Deposit
 $('#depositSavings').on('click', function(){
-  var deposit = parseInt($('#inputSavings').val());
+  var input = parseInt($('#inputSavings').val());
   var currentBalance = parseInt($('#savingsBalance').text());
-  var newBalance = (currentBalance + deposit);
+  var newBalance = (currentBalance + input);
   $('#savingsBalance').text(newBalance)
   $('#inputSavings').val('');
-  if(newBalance > 0) {
-    $('.savings').css('background-color', 'green');
+});
+
+//Savings account withdraw funtion
+$('#withdrawSavings').on('click', function(){
+  var input = parseInt($('#inputSavings').val());
+  var currentBalance = parseInt($('#savingsBalance').text());
+  var newBalance = (currentBalance - input);
+  $('#savingsBalance').text(newBalance);
+  $('#inputSavings').val('');
+  if(newBalance < 0) {
+    $('#savingsBalance').text(currentBalance);
+    alert('Warning: Insufficient Funds')
+  }
+  if (newBalance === 0) {
+    $('.savings').addClass('zero');
+  }
+  if (newBalance > 0) {
+    $('.savings').removeClass('zero').addClass('balance');
   }
 });
-//Savings account withdraw funtion
-
-//On click of the withdrawl button
-
-//Get value from the amountSavings input field
-
- //If that value is greater than the value in the account ignore that action
- //In other words if this would put the account into a negative balance do not allow it
-
- //Else subtract that value from the current amount in the savings account
-
-// Bonus-- get the two accounts to work with each other and allow for overdraft protection
-
-// Double Bonus-- This isnt very DRY.  Using the keyword "this" see if you can make the withdraw and deposit functions work for both accounts
-
 
 //DOCUMENT READY BRACES!
 });
 
 
 
+// Bonus-- get the two accounts to work with each other and allow for overdraft protection
 
-
-
-// $('#depositChecking').on('click', add$$$())
-// $('#depositSavings').on('click', add$$$())
-// // $('#withdrawChecking').on('click', rmv$$$())
-// // $('#withdrawSavings').on('click', rmv$$$())
-//
-//
-// function add$$$(){
-//   var prevBalance = $(this).siblings("div.balance");
-//   var prevBalNumerical = prevBalance.text();
-//   var currentBalance = parseInt(prevBalNumerical.replace("$", ""));
-//   var addAmount = parseInt($(this).siblings("input.inputChecking").val());
-//
-//   $(prevBalance).text(function() {
-//     var newBalance = addAmount + currentBalance;
-//     return "$" + newbalance;
-//   });
-// }
+// Double Bonus-- This isnt very DRY.  Using the keyword "this" see if you can make the withdraw and deposit functions work for both accounts
