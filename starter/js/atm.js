@@ -2,37 +2,49 @@ $(document).ready(function() {
 //console.log( "ready!" );
 
 
-//Checking account deposit function
-//On click of the depositChecking button
-//Get value from the amountChecking input field
-//Take that value and add it to the existing value in the checkingBalance div
-
+//Checking Deposit
 $('#depositChecking').on('click', function(){
-  var deposit = parseInt($('#inputChecking').val());
+  var input = parseInt($('#inputChecking').val());
   var currentBalance = parseInt($('#checkingBalance').text());
-  var newBalance = (currentBalance + deposit);
+  var newBalance = (currentBalance + input);
   $('#checkingBalance').text(newBalance)
   $('#inputChecking').val('');
-  if(newBalance > 0) {
-    $('.checking').css('background-color', 'green');
-  }
+    if(newBalance > 0) {
+      $('.checking').css('background-color', 'green');
+    }
 });
-//Checking account withdrawl funtion
 
+//Checking account withdrawl
 //On click of the withdrawChecking button
-
 //Get value from the amountChecking input field
-
 // If that value is greater than the value in the account ignore that action
 // In other words if this would put the account into a negative balance do not allow it
-
 //Else subtract that value from the current amount in the checking account
+$('#withdrawChecking').on('click', function(){
+  var input = parseInt($('#inputChecking').val());
+  var currentBalance = parseInt($('#checkingBalance').text());
+  var newBalance = (currentBalance - input);
+  $('#checkingBalance').text(newBalance)
+  $('#inputChecking').val('');
+    if(newBalance > 0) {
+      $('.checking').css('background-color', 'green');
+    }
+});
 
 
-//Savings account deposit function
-//On click of the depositSavings button
-//Get value from the amountSavings input field
-//Take that value and add it to the existing value in the savingsBalance div
+
+
+
+
+
+
+
+
+
+
+
+
+//Savings Deposit
 $('#depositSavings').on('click', function(){
   var deposit = parseInt($('#inputSavings').val());
   var currentBalance = parseInt($('#savingsBalance').text());
