@@ -6,26 +6,17 @@ $(document).ready(function() {
 //On click of the depositChecking button
 //Get value from the amountChecking input field
 //Take that value and add it to the existing value in the checkingBalance div
-var checkingBalance=$('#checkingBalance')
-var inputChecking=$('#inputChecking')
 
 $('#depositChecking').on('click', function(){
-   var totalCheckingBal = parseInt(checkingBalance.text());
-   var addChecking = parseInt(inputChecking.val());
-   var newCheckingBal = (totalCheckingBal + addChecking);
-   checkingBalance.text(newCheckingBal)
-   //inputChecking.reset();
-
+  var deposit = parseInt($('#inputChecking').val());
+  var currentBalance = parseInt($('#checkingBalance').text());
+  var newBalance = (currentBalance + deposit);
+  $('#checkingBalance').text(newBalance)
+  $('#inputChecking').val('');
+  if(newBalance > 0) {
+    $('.checking').css('background-color', 'green');
+  }
 });
-
-
-
-
-
-
-
-
-
 //Checking account withdrawl funtion
 
 //On click of the withdrawChecking button
@@ -39,13 +30,19 @@ $('#depositChecking').on('click', function(){
 
 
 //Savings account deposit function
-
 //On click of the depositSavings button
-
 //Get value from the amountSavings input field
-
 //Take that value and add it to the existing value in the savingsBalance div
-
+$('#depositSavings').on('click', function(){
+  var deposit = parseInt($('#inputSavings').val());
+  var currentBalance = parseInt($('#savingsBalance').text());
+  var newBalance = (currentBalance + deposit);
+  $('#savingsBalance').text(newBalance)
+  $('#inputSavings').val('');
+  if(newBalance > 0) {
+    $('.savings').css('background-color', 'green');
+  }
+});
 //Savings account withdraw funtion
 
 //On click of the withdrawl button
